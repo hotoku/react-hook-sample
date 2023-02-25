@@ -1,79 +1,20 @@
-import "./App.css";
+import { useState } from "react";
+import ChatRoom from "./ChatRoom";
 
-import React, { useState, useEffect } from "react";
-
-function useOnlineStatus() {
-  const [isOnline, setIsOnline] = useState(true);
-  useEffect(() => {
-    function handleOnline() {
-      setIsOnline(true);
-    }
-    function handleOffline() {
-      setIsOnline(false);
-    }
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
-    };
-  }, []);
-  return isOnline;
-}
-
-function useFormInput(initialValue: string) {
-  const [value, setValue] = useState<string>(initialValue);
-
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (
-    e
-  ): void => {
-    setValue(e.target.value);
-  };
-
-  const inputProps = {
-    value: value,
-    handleChange: handleChange,
-  };
-  return inputProps;
-}
-
-export function SaveButton() {
-  const isOnline = useOnlineStatus();
-  function handleSaveClick() {
-    console.log("✅ Progress saved");
-  }
-
-  return (
-    <button disabled={!isOnline} onClick={handleSaveClick}>
-      {isOnline ? "Save progress" : "Reconnecting..."}
-    </button>
-  );
-}
-
-function App(): JSX.Element {
-  const isOnline = useOnlineStatus();
-  const firstNameProps = useFormInput("");
-  const lastNameProps = useFormInput("");
-
+export default function App() {
+  const [roomId, setRoomId] = useState("general");
   return (
     <>
-      <h1>{isOnline ? "✅ Online" : "❌ Disconnected"}</h1>
       <label>
-        first name
-        <input
-          value={firstNameProps.value}
-          onChange={firstNameProps.handleChange}
-        />
+        Choose the chat room:{" "}
+        <select value={roomId} onChange={(e) => setRoomId(e.target.value)}>
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
       </label>
-      <label>
-        last name
-        <input
-          value={lastNameProps.value}
-          onChange={lastNameProps.handleChange}
-        />
-      </label>
+      <hr />
+      <ChatRoom roomId={roomId} />
     </>
   );
 }
-
-export default App;
