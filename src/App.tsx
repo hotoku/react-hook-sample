@@ -2,7 +2,7 @@ import "./App.css";
 
 import { useState, useEffect } from "react";
 
-export function SaveButton() {
+function useOnlineStatus() {
   const [isOnline, setIsOnline] = useState(true);
   useEffect(() => {
     function handleOnline() {
@@ -18,7 +18,11 @@ export function SaveButton() {
       window.removeEventListener("offline", handleOffline);
     };
   }, []);
+  return isOnline;
+}
 
+export function SaveButton() {
+  const isOnline = useOnlineStatus();
   function handleSaveClick() {
     console.log("✅ Progress saved");
   }
@@ -31,21 +35,7 @@ export function SaveButton() {
 }
 
 function App(): JSX.Element {
-  const [isOnline, setIsOnline] = useState(true);
-  useEffect(() => {
-    function handleOnline() {
-      setIsOnline(true);
-    }
-    function handleOffline() {
-      setIsOnline(false);
-    }
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
-    return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
-    };
-  }, []);
+  const isOnline = useOnlineStatus();
 
   return <h1>{isOnline ? "✅ Online" : "❌ Disconnected"}</h1>;
 }
