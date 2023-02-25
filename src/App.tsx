@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function useOnlineStatus() {
   const [isOnline, setIsOnline] = useState(true);
@@ -21,6 +21,22 @@ function useOnlineStatus() {
   return isOnline;
 }
 
+function useFormInput(initialValue: string) {
+  const [value, setValue] = useState<string>(initialValue);
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ): void => {
+    setValue(e.target.value);
+  };
+
+  const inputProps = {
+    value: value,
+    handleChange: handleChange,
+  };
+  return inputProps;
+}
+
 export function SaveButton() {
   const isOnline = useOnlineStatus();
   function handleSaveClick() {
@@ -36,8 +52,28 @@ export function SaveButton() {
 
 function App(): JSX.Element {
   const isOnline = useOnlineStatus();
+  const firstNameProps = useFormInput("");
+  const lastNameProps = useFormInput("");
 
-  return <h1>{isOnline ? "✅ Online" : "❌ Disconnected"}</h1>;
+  return (
+    <>
+      <h1>{isOnline ? "✅ Online" : "❌ Disconnected"}</h1>
+      <label>
+        first name
+        <input
+          value={firstNameProps.value}
+          onChange={firstNameProps.handleChange}
+        />
+      </label>
+      <label>
+        last name
+        <input
+          value={lastNameProps.value}
+          onChange={lastNameProps.handleChange}
+        />
+      </label>
+    </>
+  );
 }
 
 export default App;
