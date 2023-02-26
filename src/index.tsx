@@ -9,6 +9,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <div>
+      <a href="https://beta.reactjs.org/learn/reusing-logic-with-custom-hooks">
+        Reactのドキュメント
+      </a>
+      の写経。custom hookの練習
+    </div>
     <App />
   </React.StrictMode>
 );
