@@ -12,8 +12,8 @@ export function createConnection({
   if (typeof roomId !== "string") {
     throw Error("Expected roomId to be a string. Received: " + roomId);
   }
-  let intervalId: any;
-  let messageCallback: any;
+  let intervalId: NodeJS.Timer | undefined = undefined;
+  let messageCallback: ((m: string) => void) | undefined = undefined;
   return {
     connect() {
       console.log(
@@ -32,12 +32,12 @@ export function createConnection({
     },
     disconnect() {
       clearInterval(intervalId);
-      messageCallback = null;
+      messageCallback = undefined;
       console.log(
         '❌ Disconnected from "' + roomId + '" room at ' + serverUrl + ""
       );
     },
-    on(event: string, callback: any) {
+    on(event: string, callback: (m: string) => void) {
       if (messageCallback) {
         throw Error("Cannot add the handler twice.");
       }
