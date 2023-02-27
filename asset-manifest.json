@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-hoo-sample/static/css/main.3d0e2a61.css",
-    "main.js": "/react-hoo-sample/static/js/main.e2829ed4.js",
-    "static/js/787.f0dc7b71.chunk.js": "/react-hoo-sample/static/js/787.f0dc7b71.chunk.js",
-    "index.html": "/react-hoo-sample/index.html",
-    "main.3d0e2a61.css.map": "/react-hoo-sample/static/css/main.3d0e2a61.css.map",
-    "main.e2829ed4.js.map": "/react-hoo-sample/static/js/main.e2829ed4.js.map",
-    "787.f0dc7b71.chunk.js.map": "/react-hoo-sample/static/js/787.f0dc7b71.chunk.js.map"
+    "main.css": "/react-hook-sample/static/css/main.3d0e2a61.css",
+    "main.js": "/react-hook-sample/static/js/main.7730dc3b.js",
+    "static/js/787.f0dc7b71.chunk.js": "/react-hook-sample/static/js/787.f0dc7b71.chunk.js",
+    "index.html": "/react-hook-sample/index.html",
+    "main.3d0e2a61.css.map": "/react-hook-sample/static/css/main.3d0e2a61.css.map",
+    "main.7730dc3b.js.map": "/react-hook-sample/static/js/main.7730dc3b.js.map",
+    "787.f0dc7b71.chunk.js.map": "/react-hook-sample/static/js/787.f0dc7b71.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3d0e2a61.css",
-    "static/js/main.e2829ed4.js"
+    "static/js/main.7730dc3b.js"
   ]
 }
