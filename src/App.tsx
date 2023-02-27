@@ -4,7 +4,7 @@ import ChatRoom from "./ChatRoom";
 export default function App() {
   const [roomId, setRoomId] = useState("general");
   return (
-    <div style={{ padding: 100 }}>
+    <div style={{ padding: 100, background: "#eeeeee" }}>
       <label>
         Choose the chat room:{" "}
         <select value={roomId} onChange={(e) => setRoomId(e.target.value)}>
